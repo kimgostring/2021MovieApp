@@ -53,7 +53,7 @@ function LandingPage(props) {
                 /* main img 컴포넌트 추가, MainMovie 정보를 가져온 이후 렌더링해야 함 */ 
                 MainMovie && 
                 <MainImg 
-                    img={`${IMG_URL}/w1280/${MainMovie.backdrop_path}`} 
+                    img={`${IMG_URL}/w1280${MainMovie.backdrop_path}`} 
                     title={MainMovie.original_title}
                     text={MainMovie.overview}
                 />
@@ -76,7 +76,8 @@ function LandingPage(props) {
                         Movies && Movies.map((movie, index) => (
                             <React.Fragment key={index}>
                                 <GridCards 
-                                    img={movie.poster_path ? 
+                                    landingPage
+                                    movieImg={movie.poster_path ? 
                                         `${IMG_URL}/w500/${movie.poster_path}` : null} 
                                     movieId={movie.id} 
                                     movieName={movie.original_title}

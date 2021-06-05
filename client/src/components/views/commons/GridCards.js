@@ -7,15 +7,26 @@ import React from 'react';
 import { Col } from 'antd';
 
 function GridCards(props) {
-    return (
-        <Col lg={6} md={8} sm={12} xs={24}> { /* 전체 row는 24, 한 col이 몇을 차지하는지 나누기 */ }
-            <div style={{ position: 'reactive' }}>
-                <a href={`/movie/${props.movieId}`}>
-                    <img style={{width: '100%'}} src={props.img} alt={props.movieName} />
-                </a>
-            </div>
-        </Col>
-    )
+
+    if (props.landingPage) {
+        return (
+            <Col lg={6} md={8} sm={12} xs={24}> { /* 전체 row는 24, 한 col이 몇을 차지하는지 나누기 */ }
+                <div style={{ position: 'reactive' }}>
+                    <a href={`/movie/${props.movieId}`}>
+                        <img style={{width: '100%'}} src={props.movieImg} alt={props.movieName} />
+                    </a>
+                </div>
+            </Col>
+        )
+    } else if (props.movieDetail) {
+        return (
+            <Col lg={6} md={8} sm={12} xs={24}> { /* 전체 row는 24, 한 col이 몇을 차지하는지 나누기 */ }
+                <div style={{ position: 'reactive' }}>
+                    <img style={{width: '100%'}} src={props.characterImg} alt={props.name} />
+                </div>
+            </Col>
+        )
+    }
 }
 
 export default GridCards
