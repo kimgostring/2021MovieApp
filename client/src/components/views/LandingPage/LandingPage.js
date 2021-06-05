@@ -3,7 +3,7 @@ import axios from "axios";
 import { withRouter } from 'react-router-dom';
 import { USER_SERVER, API_URL, API_KEY, IMG_URL } from '../../../Config';
 import { Row } from 'antd';
-import MainImg from './Section/MainImg';
+import MainImg from '../commons/MainImg';
 import GridCards from '../commons/GridCards';
 
 function LandingPage(props) {

@@ -34,7 +34,7 @@ export default function (SpecificComponent, isLoginAccess, isAdminAccess = null)
 
         // 해당 컴포넌트를 리턴해주어야 App.js에서 받아 사용 가능
         return (
-            <SpecificComponent />
+            <SpecificComponent {...props} /> // props를 내려줘야, auth를 거친 컴포넌트에서 props 받을 수 O
         );
     };
 
