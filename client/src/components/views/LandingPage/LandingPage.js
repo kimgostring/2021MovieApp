@@ -20,18 +20,29 @@ function LandingPage(props) {
 
     const [Movies, setMovies] = useState([]);
     const [MainMovie, setMainMovie] = useState();
+    const [CurrentPage, setCurrentPage] = useState(0);
 
     // API에서 정보 가져오기, 현재 인기있는 영화 정보
     useEffect(() => {
         // url 값 이용
         const endpoint = `${API_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+        fetchMovies(endpoint);
+    }, []);
+
+    const fetchMovies = (endpoint) => {
         fetch(endpoint) // fetch와 axios는 유사한 함수
         .then(res => res.json())
         .then(res => {
-            setMovies([...res.results]);
+            setMovies([...Movies, ...res.results]); // 기존에 저장되어 있던 영화 정보 뒤에 새 정보 추가
             setMainMovie(res.results[0]); // 맨 처음 정보
+            setCurrentPage(res.page); // 현재 페이지 정보
         });
-    }, []);
+    }
+
+    const loadMoreItems = () => {
+        const endpoint = `${API_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage + 1}`;
+        fetchMovies(endpoint);
+    }
     
     return (
         <div style={{
@@ -79,7 +90,7 @@ function LandingPage(props) {
             <div style={{
                 display: 'flex', justifyContent: 'center'
             }}>
-                <button>Load More</button>
+                <button onClick={loadMoreItems}>Load More</button>
             </div>
         </div>  
     );
