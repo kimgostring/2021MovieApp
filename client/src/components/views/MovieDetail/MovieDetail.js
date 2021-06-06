@@ -6,6 +6,7 @@ import { Row } from 'antd';
 import MainImg from '../commons/MainImg'
 import MovieInfo from './Sections/MovieInfo'
 import GridCards from '../commons/GridCards'
+import FavoriteBtn from './Sections/FavoriteBtn'
 
 function MovieDetail(props) {
     const movieId = props.match.params.movieId;
@@ -15,8 +16,9 @@ function MovieDetail(props) {
     const [ActorToggle, setActorToggle] = useState(false);
 
     useEffect(() => { // DOM이 load되었을 때, 처음에 할 작업
-        const endpointCasts = `${API_URL}/movie/${movieId}/credits?api_key=${API_KEY}`,
-            endpointInfo = `${API_URL}/movie/${movieId}?api_key=${API_KEY}`;
+        // 영화 정보 가져오기
+        const endpointInfo = `${API_URL}/movie/${movieId}?api_key=${API_KEY}`,
+        endpointCasts = `${API_URL}/movie/${movieId}/credits?api_key=${API_KEY}`;
         
         fetch(endpointInfo)
         .then(res => res.json())
@@ -52,6 +54,17 @@ function MovieDetail(props) {
 
             {/* Body */}
             <div style={{width: '85%', margin: '1rem auto'}}>
+                <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
+                    { 
+                        Movie && 
+                        <FavoriteBtn 
+                            userFrom={localStorage.getItem('userId')} // LoginPage에서 login할 때 localstorage에 해당 값 저장
+                            movieInfo={Movie}
+                            movieId={movieId}
+                        /> 
+                    }
+                </div>
+                
                 {/* Movie Info, Movie 정보 다 받은 뒤에 렌더링해야 함 */}
                 { Movie && <MovieInfo movie={Movie}/> }
                 <br /> 

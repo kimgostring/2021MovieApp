@@ -11,6 +11,7 @@ function LandingPage(props) {
         axios.get(`${USER_SERVER}/logout`)
             .then(res => {
                 if (res.data.success) {
+                    window.localStorage.setItem('userId', null);
                     props.history.push("/login");
                 } else {
                     alert("Error");

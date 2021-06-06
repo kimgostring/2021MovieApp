@@ -25,7 +25,8 @@ export default function (SpecificComponent, isLoginAccess, isAdminAccess = null)
                 } else { // 로그인한 상태
                     if (isAdminAccess && !res.payload.isAdmin) { // 관리자만 접근 가능한 페이지
                         props.history.push('/');
-                    } else if (!isLoginAccess) { // 로그인하지 않은 사람이 접근할 수 있는 페이지
+                    } else if (isLoginAccess === false) { // 로그인하지 않은 사람이 접근할 수 있는 페이지
+                        // !isLoginAccess로 할 경우, null일 때도 출입이 불가능해짐
                         props.history.push('/');
                     }
                 }
