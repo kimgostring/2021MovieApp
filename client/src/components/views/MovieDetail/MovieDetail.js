@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { API_URL, API_KEY, IMG_URL } from '../../../Config'
 import { withRouter } from 'react-router-dom';
-import { Row } from 'antd';
+import { Row, Button } from 'antd';
 import MainImg from '../commons/MainImg'
 import MovieInfo from './Sections/MovieInfo'
 import GridCards from '../commons/GridCards'
@@ -71,7 +71,7 @@ function MovieDetail(props) {
                 {/* Actor Grid */}
    
                 <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}>
-                    <button onClick={toggleActorView}> Toggle Actor View </button>
+                    <Button shape="round" onClick={toggleActorView}> Toggle Actor View </Button>
                 </div>
 
                 { ActorToggle && 

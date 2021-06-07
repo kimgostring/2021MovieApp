@@ -1,5 +1,6 @@
 // server/models/Favorite.js
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema; // 없으면 오류, 이 부분 있어야지 Schema.Types.ObjectId
 
 // 스키마 생성
 const favoriteSchema = mongoose.Schema({

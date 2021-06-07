@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { withRouter } from 'react-router-dom';
 import { USER_SERVER, API_URL, API_KEY, IMG_URL } from '../../../Config';
-import { Row } from 'antd';
+import { Row, Button } from 'antd';
 import MainImg from '../commons/MainImg';
 import GridCards from '../commons/GridCards';
 
@@ -64,9 +64,12 @@ function LandingPage(props) {
                 width: '85%', margin: '1rem auto'
             }}>
                 <h2>Movie by latest</h2>
-                <button onClick={onClickHandler}>
-                    Log out
-                </button>
+                <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
+                    <Button shape="round" onClick={onClickHandler}>
+                        Log out
+                    </Button>
+                </div>
+                
                 <hr /> { /* 선 긋기 */ }
                 
                 { /* movie grid cards */ }
@@ -92,7 +95,7 @@ function LandingPage(props) {
             <div style={{
                 display: 'flex', justifyContent: 'center'
             }}>
-                <button onClick={loadMoreItems}>Load More</button>
+                <Button shape="round" onClick={loadMoreItems}>Load More</Button>
             </div>
         </div>  
     );

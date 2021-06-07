@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { Input, Button } from 'antd';
 
 function LoginPage(props) { // 페이지 이동에 사용됨
     const dispatch = useDispatch();
@@ -55,8 +56,7 @@ function LoginPage(props) { // 페이지 이동에 사용됨
             <form style={{ display: 'flex', flexDirection: 'column'}}
                 onSubmit={handleSubmit(onSubmitHandler)}
             >
-                <label>Email</label>
-                <input {...register("email", {
+                <Input placeholder="Email" {...register("email", {
                     required: "Email is required.",
                     pattern: {
                         value: /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/,
@@ -64,9 +64,9 @@ function LoginPage(props) { // 페이지 이동에 사용됨
                     }
                 })} onChange={onEmailHandler} /> 
                 {errors.email?.message}
+                <br />
 
-                <label>Password</label>
-                <input type="password" {...register("password", {
+                <Input.Password placeholder="password" {...register("password", {
                     required: "Password is required.", 
                     minLength: {
                         value: 5,
@@ -76,7 +76,8 @@ function LoginPage(props) { // 페이지 이동에 사용됨
                 {errors.password?.message}
                 <br />
 
-                <button type="submit">Login</button>
+                <Button shape="round" htmlType="submit">Login</Button>
+                <a href="/register" style={{ color: "gray "}}>Register now</a>
             </form>
         </div>
     )

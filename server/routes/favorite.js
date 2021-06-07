@@ -39,4 +39,21 @@ router.post('/favorited', (req, res) => {
     })
 });
 
+router.post('/removeFromFavorite', (req, res) => {
+    Favorite.findOneAndDelete({ movieId: req.body.movieId, userFrom: req.body.userFrom })
+    .exec((err, doc) => {
+        if (err) return res.status(400).send(err);
+        res.status(200).json( { success: true, doc });
+    })
+});
+
+router.post('/addToFavorite', (req, res) => {
+    // res.body를 통해 client로부터 받은 정보를 favorite model에 넣어 DB에 보내주면 됨
+    const favoriteData = new Favorite(req.body); 
+    favoriteData.save((err, doc) => { // DB에 저장
+        if (err) return res.status(400).send(err);
+        res.status(200).json({ success: true, doc });
+    }); 
+});
+
 module.exports = router;
