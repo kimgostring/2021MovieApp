@@ -1,24 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import axios from "axios";
 import { withRouter } from 'react-router-dom';
-import { USER_SERVER, API_URL, API_KEY, IMG_URL } from '../../../Config';
+import { API_URL, API_KEY, IMG_URL } from '../../../Config';
 import { Row, Button } from 'antd';
 import MainImg from '../commons/MainImg';
 import GridCards from '../commons/GridCards';
 
-function LandingPage(props) {
-    const onClickHandler = () => {
-        axios.get(`${USER_SERVER}/logout`)
-            .then(res => {
-                if (res.data.success) {
-                    window.localStorage.setItem('userId', null);
-                    props.history.push("/login");
-                } else {
-                    alert("Error");
-                }
-            });
-    };
-
+function LandingPage() {
     const [Movies, setMovies] = useState([]);
     const [MainMovie, setMainMovie] = useState();
     const [CurrentPage, setCurrentPage] = useState(0);
@@ -64,12 +51,6 @@ function LandingPage(props) {
                 width: '85%', margin: '1rem auto'
             }}>
                 <h2>Movie by latest</h2>
-                <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
-                    <Button shape="round" onClick={onClickHandler}>
-                        Log out
-                    </Button>
-                </div>
-                
                 <hr /> { /* 선 긋기 */ }
                 
                 { /* movie grid cards */ }

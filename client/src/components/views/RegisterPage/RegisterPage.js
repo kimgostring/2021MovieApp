@@ -91,6 +91,7 @@ function RegisterPage(props) {
                 <br />
 
                 <Button shape="round" htmlType="submit">Sign Up</Button>
+                <a href="/login" style={{ color: "gray "}}>Login now</a>
             </form>
         </div>
     );
